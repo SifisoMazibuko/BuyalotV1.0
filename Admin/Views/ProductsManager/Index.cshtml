@@ -1,0 +1,204 @@
+﻿@model IEnumerable<Admin.Models.ProductModel>
+@{
+    ViewBag.Title = "Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Bootstrap -->
+<link href="./Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="./Content/bootstrap.min.css" rel="stylesheet" />
+<link href="./Content/stylesheet.css" rel="stylesheet" />
+
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" type="text/css" rel="stylesheet" />
+<link href="http://http://cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css" type="text/javascript" rel="stylesheet" />
+
+
+<style type="text/css">
+    #myInput {
+        background-image: url('/Images/search.png');
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #myTable {
+        /*border-collapse: collapse;*/
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+</style>
+<br />
+<br />
+<fieldset>
+    @*<h1 class="container text-center" style="background-color:#70cef7">Product Dashboard</h1>*@
+    <br />
+    <button class="btn btn-default">
+        @Html.ActionLink("Add New Product", "Create")
+    </button>
+    <br />
+    <br />
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for products..">
+    <br />
+    <table class="table table-striped table-responsive table-bordered table-condensed" id="myTable">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.productName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.productDescription)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.price)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.vendor)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.quantityInStock)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.productImage)
+                </th>
+                <th width="200px">Action</th>
+            </tr>
+        </thead>
+
+        @*<th>
+                @Html.DisplayNameFor(model => model.ProductCategory.categoryName)
+            </th>*@
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                var base64 = Convert.ToBase64String(item.productImage);
+                var prodImage = string.Format("data:image/png;base64,{0}", base64);
+
+                var name1 = item.vendor + " " + item.productName;
+                var price1 = item.price.ToString();
+                var quantity1 = item.quantityInStock;
+
+
+                var R = "R";
+                var price = R + "" + price1.ToString();
+
+
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.productName)
+                    </td>
+                    <td class="text">
+                        <span>
+                            @Html.DisplayFor(modelItem => item.productDescription)
+                        </span>
+                    </td>
+                    <td>
+                        @price
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.vendor)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.quantityInStock)
+                    </td>
+                    <td>
+                        <img src="@prodImage" style="max-height:100px;max-width:100px;" />
+
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.productID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.productID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.productID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</fieldset>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+<script src="http://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+
+<script type="text/javascript">
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+
+
+
+
+<script>
+    //$("#myOrderTable").dataTable({
+    //        "aoColumnDefs": [
+    //           { 'bSortable': false, 'aTargets': [2, 3, 4, 5] }
+    //        ],
+    //        "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+    //        "iDisplayLength": 5
+    //});
+
+
+    var table = $('#myTable').DataTable({
+        "aoColumnDefs": [
+           { 'bSortable': false, 'aTargets': [0, 2, 3, 4, 6, 7] }
+        ],//,
+        //"aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        //"iDisplayLength": 5,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy',
+            'print',
+            'pdf'
+        ]
+        //dom: 'Bfrtip',
+        //buttons: [
+        //    'copy', 'pdf', 'print'
+        //]
+    });
+
+    table.buttons().container()
+   .appendTo('#myOrderTable_wrapper .col-md-6:eq(0)');
+</script>
+
+

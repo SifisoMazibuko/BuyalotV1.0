@@ -1,0 +1,198 @@
+﻿@model BuyalotV1._0.Models.ProductModel
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<style type="text/css">
+    #myImg {
+        border-radius: 5px;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+        #myImg:hover {
+            opacity: 0.7;
+        }
+
+    /* The Modal (background) */
+    .modal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        padding-top: 100px; /* Location of the box */
+        left: 0;
+        top: 0;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+    }
+
+    /* Modal Content (image) */
+    .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+    }
+
+    /* Caption of Modal Image */
+    #caption {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+        text-align: center;
+        color: #ccc;
+        padding: 10px 0;
+        height: 150px;
+    }
+
+    /* Add Animation */
+    .modal-content, #caption {
+        -webkit-animation-name: zoom;
+        -webkit-animation-duration: 0.6s;
+        animation-name: zoom;
+        animation-duration: 0.6s;
+    }
+
+
+
+    /* The Close Button */
+    .close {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+    }
+
+     .close:hover,
+     .close:focus {
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+     }
+
+     #myInput {
+        background-image: url('/Images/search.png');
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    /* 100% Image Width on Smaller Screens */
+</style>
+<br />
+<h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue">New Released Products</h3>
+<br />
+<div class="container" id="myTable">
+
+
+    @foreach (var product in ViewBag.ProductList)
+    {
+
+        <div style="display:inline-block">
+            @{
+                var base64 = Convert.ToBase64String(product.productImage);
+                var prodImage = string.Format("data:image/png;base64,{0}", base64);
+                var prodID = product.productID;
+                var name1 = product.vendor + " " + product.productName;
+                //var price1 = product.price.ToString();
+                var quantity1 = product.quantityInStock;
+                var check1 = "";
+
+            }
+
+            <div class="img-wrapper">
+                <img src="@prodImage" style="max-height:200px;max-width:200px;" class="img-responsive" id="myImg" />
+            </div>
+
+            <p>@name1</p>
+            <p>R @String.Format(String.Format("{0:0.00}", product.price))</p>
+            @if (quantity1 > 0)
+            {
+                check1 = "Available";
+                //<p style="color:green"><b>check1</b></p>
+                <p style="color:green"><b>@check1</b></p>
+                @*<p>@Html.ActionLink("Add To Cart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success" })</p>*@
+
+            }
+            else
+            {
+
+                check1 = "Out Of Stock";
+                <p style="color:red"><b>@check1</b></p>
+                @*<p>@Html.ActionLink("Add To WishList", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-primary" })</p>*@
+
+            }
+            <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</p>
+            <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</p>
+
+
+        </div>
+                }
+</div>
+
+<div id="myModal" class="modal">
+    <span class="close">X</span>
+    <img class="modal-content" id="img01">
+    <div id="caption"></div>
+</div>
+
+<script type="text/javascript">
+// Get the modal
+    var modal = document.getElementById('myModal');
+
+    // Get the image and insert it inside the modal - use its "alt" text as a caption
+    var img = document.getElementById('myImg');
+    var modalImg = document.getElementById("img01");
+    var captionText = document.getElementById("caption");
+    img.onclick = function(){
+        modal.style.display = "block";
+        modalImg.src = this.src;
+        captionText.innerHTML = this.alt;
+    }
+
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
+
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function() {
+        modal.style.display = "none";
+    }
+</script>
+
+<script type="text/javascript"> 
+    function myFunction() {
+        // Declare variables
+        var input, filter, div, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        div = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+

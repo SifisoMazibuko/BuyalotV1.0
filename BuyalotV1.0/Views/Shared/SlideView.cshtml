@@ -1,0 +1,133 @@
+﻿<div class="container">
+
+    @*@<div class="row-fluid">
+
+        <div id="slider" class="carousel slide">
+
+            <h3>
+                Featured Products
+            </h3>
+            <div class="carousel-inner">
+                <div class="row active item">
+                    <li data-target="#slider" class="span3" align="center">
+                                <a href="#" class="sliderImage1"><img></a></a>
+                                <a href="#" class="pname">Samsung S7</a>
+                            </li>
+                            <li data-target="#slider" class="span3" align="center">
+                                <a href="#" class="sliderImage2"><img></a></a>
+                                <a href="#" class="pname">Lenovo G550</a>
+                            </li>
+                        </div>
+                        <div class="row item">
+                            <li data-target="#slider" class="span3" align="center">
+                                <a href="#" class="sliderImage3"><img></a></a>
+                                <a href="#" class="pname">Xperia Z1</a>
+                            </li>
+
+                </div>
+            </div>
+
+
+            <!-- Carousel nav -->
+            <a class="carousel-control left" href="#slider" data-slide="prev">&lsaquo;</a>
+            <a class="carousel-control right" href="#slider" data-slide="next">&rsaquo;</a>
+
+        </div>
+
+    </div>*@
+
+    <table class="buy-slideshow">
+        <tr class="mover-1">
+            @try
+            {
+                foreach (var product in Model)
+                {
+                    <td>
+                        <div class="row-fluid Slide-Div" id="myimages">
+
+                            <div id="slider" class="carousel slide">
+                                <div class="carousel-inner">
+                                    <div class="row active item" data-target="#slider">
+                                        @{
+                                        
+                                            var base64 = Convert.ToBase64String(product.productImage);
+                                            var prodImage = string.Format("data:image/png;base64,{0}", base64);
+                                            var prodID = product.productID;
+                                            var name1 = product.vendor + " " + product.productName;
+                                            //var price1 = product.price.ToString();
+                                            var quantity1 = product.quantityInStock;
+                                        }
+                                        <div>
+                                            <a href="@Url.Action("Details", "Products", new { id = product.productID })">
+                                                <div id="slider">
+                                                    <img href="#" src="@prodImage" id="myImg" style="max-height:200px;max-width:200px;" class="img-responsive" />
+                                                    
+                                                </div>
+                                               
+                                            </a>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                            
+                           
+                        </div>
+                        <div  @*align="center"*@>
+                            <a href="@Url.Action("Details", "Products", new { id = product.productID })"><p>@product.productName</p></a>
+                        </div>
+                    </td>                   }
+
+            }
+            catch (NullReferenceException)
+            {
+
+            }
+            
+        </tr>
+        
+    </table>
+    </div>
+@*<a class="carousel-control left" href="#slider" data-slide="prev">&lsaquo;</a>
+<a class="carousel-control right" href="#slider" data-slide="next">&rsaquo;</a>*@
+    
+  
+
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+<script src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js"></script>
+<script>
+    $(function () {
+        $('#slider').carousel()
+    });
+</script>
+
+
+
+
+                    @*@foreach (var product in Model)
+                        {
+
+                            <div id="slider" class="carousel slide" style="display:inline-block">
+                                @{
+
+                                    var base64 = Convert.ToBase64String(product.productImage);
+                                    var prodImage = string.Format("data:image/png;base64,{0}", base64);
+                                    var prodID = product.productID;
+                                    var name1 = product.vendor + " " + product.productName;
+                                    //var price1 = product.price.ToString();
+                                    var quantity1 = product.quantityInStock;
+                                    var check1 = "";
+
+                                }
+
+
+                                <a href="@Url.Action("Details", "Products", new { id = product.productID })">
+                                    <div class="img-wrapper">
+                                        <img src="@prodImage" id="myImg" style="max-height:200px;max-width:200px;" class="img-responsive" />
+                                    </div>
+                                </a>
+                                <br />
+
+                            </div>
+                                    }*@

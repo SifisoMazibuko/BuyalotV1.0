@@ -1,0 +1,58 @@
+﻿
+@model BuyalotV1._0.Models.CustomerModel
+
+@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+<h2>Login</h2>
+
+
+@using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+{
+    @ViewBag.errorLogin
+    @Html.AntiForgeryToken()
+
+    <fieldset class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true)
+
+        <div class="form-group">
+            <label for="email" class="col-sm-3 control-label">Email *</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", @type = "email" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="password" class="col-sm-3 control-label">Password *</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", @type = "password" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <br />
+        <div class="col-sm-offset-3 col-sm-9">
+            <input type="reset" value="Reset" class="btn btn-warning" />
+            <button class="btn btn-primary" type="submit"><span class="glyphicon glyphicon-log-in"></span> Login</button>
+        </div>
+        <div class="col-md-offset-3 col-sm-3">
+            @Html.ActionLink("forgot password?", "ForgotPassword")
+        </div>
+    </fieldset>
+}
+
+<div>
+    @Html.ActionLink("Don't have an account? Register", "Register")
+</div>
+
+@section Scripts {
+        @Scripts.Render("~/bundles/jqueryval")
+    }
+
+
+
+

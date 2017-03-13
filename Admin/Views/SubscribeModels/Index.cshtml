@@ -1,0 +1,46 @@
+﻿@model IEnumerable<Admin.Models.SubscribeModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Subscribers</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.firstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.email)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.firstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.email)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.subscribeID }) |
+                @*@Html.ActionLink("Details", "Details", new { id=item.subscribeID }) |*@
+                @Html.ActionLink("Delete", "Delete", new { id = item.subscribeID })
+            </td>
+        </tr>
+    }
+
+</table>
+<div class="col-sm-offset-9 col-sm-9">
+    <button class="btn btn-default glyphicon glyphicon-send">
+        @Html.ActionLink(" Send Email To Subscribers", "Create", new { @class = "glyphicon glyphicon-send" })
+    </button>
+   
+</div>

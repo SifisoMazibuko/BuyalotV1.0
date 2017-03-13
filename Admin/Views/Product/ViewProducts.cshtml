@@ -1,0 +1,71 @@
+﻿@model IEnumerable<Admin.Models.ProductModel >
+
+@{
+    ViewBag.Title = "ViewProducts";
+}
+
+<legend>View Products</legend>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<br />
+<table class="table">
+    <tr>
+                <td>
+                    <div class="row">
+                        @foreach (var product in Model)
+                        {
+
+
+                            <div style="width:200px; height:225px; text-align:left; display:inline-block; margin:0 10px 10px 0;">
+                                @{
+                                    var base64 = Convert.ToBase64String(product.productImage);
+                                    var prodImage = string.Format("data:image/png;base64,{0}", base64);
+
+                                    var name1 = product.vendor + " " + product.productName;
+                                    var price1 = product.price.ToString();
+                                    var quantity1 = product.quantityInStock;
+                                    var check1 = "";
+
+
+                                    if (quantity1 > 0)
+                                    {
+                                        check1 = "Available";
+                                    }
+                                    else
+                                    {
+                                        check1 = "Out Of Stock";
+
+                                    }
+                                }
+                                <img src="@prodImage" style="max-height:200px;max-width:200px;" />
+                                <p>@name1</p>
+                                <p>@price1</p>
+                                <p style="color:#4cff00">@check1</p>
+                                @*<input type="button" value="Add To Cart" class="btn btn-info navbar-left" />*@
+
+                            </div>
+
+
+                                    }
+                        <br />
+                        <br />
+                    </div>
+
+                </td>
+                @*<td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.productID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.productID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.productID })
+                </td>*@
+            </tr>
+                                    @*}*@
+
+    </table>
+
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

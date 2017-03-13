@@ -1,0 +1,106 @@
+﻿@model IEnumerable<BuyalotV1._0.Models.ProductModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<style type="text/css">
+#myImg {
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+#myImg:hover {opacity: 0.7;}
+
+</style>
+
+<h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue">New Released Products</h3>
+<br />
+<div class="container" id="myTable">
+    @{
+        var column_count = 0;
+    }
+
+
+    @foreach (var product in ViewBag.products)
+    {
+        
+        column_count++;
+        <div style="display:inline-block" class="index-wrap">
+            @{
+                var base64 = Convert.ToBase64String(product.productImage);
+                var prodImage = string.Format("data:image/png;base64,{0}", base64);
+                var prodID = product.productID;
+                var name1 = product.vendor + " " + product.productName;
+                //var price1 = product.price.ToString();
+                var quantity1 = product.quantityInStock;
+                var check1 = "";
+
+               
+
+            }
+
+            @*<div class="img-wrapper">
+                    <img src="@prodImage" style="max-height:200px;max-width:200px;" class="img-responsive" id="myImg" />
+                </div>*@
+
+            <a href="@Url.Action("Details", "Products", new { id = product.productID })">
+                <div class="img-wrapper">
+                    <img src="@prodImage" id="myImg" style="max-height:200px;max-width:200px;" class="img-responsive"/>
+                </div>
+            </a>
+
+
+            <p>@name1</p>
+            <p>R @String.Format(String.Format("{0:0.00}", product.price))</p>
+            @if (quantity1 > 0)
+            {
+                check1 = "Available";
+                <p style="color:green"><b>@check1</b></p>
+
+            }
+            else
+            {
+                check1 = "Out Of Stock";
+                <p style="color:red"><b>@check1</b></p>
+            }
+            
+            <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</p>
+            <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</p>
+      
+
+
+        </div>
+                }
+</div>
+
+
+<script type="text/javascript">
+
+                function myFunction() {
+                    // Declare variables
+                    var input, filter, div, tr, td, i;
+                    input = document.getElementById("myInput");
+                    filter = input.value.toUpperCase();
+                    div = document.getElementById("myTable");
+                    tr = table.getElementsByTagName("tr");
+
+                    // Loop through all table rows, and hide those who don't match the search query
+                    for (i = 0; i < tr.length; i++) {
+                        td = tr[i].getElementsByTagName("td")[0];
+                        if (td) {
+                            if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                                tr[i].style.display = "";
+                            } else {
+                                tr[i].style.display = "none";
+                            }
+                        }
+                    }
+                }
+
+</script>
+
+
+            
+
+
+

@@ -1,0 +1,155 @@
+﻿@using BuyalotV1._0.Models;
+@{
+    ViewBag.Title = "AddToCart";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Bootstrap -->
+<link href="./Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="./Content/bootstrap.min.css" rel="stylesheet" />
+<link href="./Content/stylesheet.css" rel="stylesheet" />
+
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+
+<style type="text/css">
+    .sid {
+        position: relative;
+        width: 100px;
+        height: 50px;
+        background-image: url('/Images/SID.png');
+    }
+</style>
+
+<h1 style="color:#ff0000">@ViewBag.Availability</h1>
+@using (Html.BeginForm("UpdateQuantity", "Products", FormMethod.Post))
+{
+    <div class="container">
+        <h3 class="glyphicon glyphicon-shopping-cart"> Shopping Cart</h3>
+        <br />
+        <br />
+        @{
+            decimal sum = 0;
+            String r = "R";
+            int cartCount = 0;
+        }
+        <table class="table table-striped table-hover" id="myTable">
+            <thead>
+                <tr>
+                    <th>Product</th>
+                    <th>Vendor</th>
+                    <th>Name</th>
+                    <th>Price</th>
+                    <th>Quantity<input type="submit" class="btn-primary" value="Update"/></th>
+                    <th>SubTotal</th>
+                    <th></th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (Item p in (List<Item>)Session["Cart"])
+                {
+
+                    <tr>
+                        @{
+
+                            //var price = String.Format("{0:0.00}", p.Prdcts.price);
+                            var base64 = Convert.ToBase64String(p.Prdcts.productImage);
+                            var prodImage = string.Format("data:image/png;base64,{0}", base64);
+
+                           
+                            sum = sum + (p.Prdcts.price * p.Quantity);
+                            cartCount = cartCount + p.Quantity;
+                            Session["cartCounter"] = cartCount;
+                        }
+
+                        <td class="img-wrapper">
+                            <img src="@prodImage" style="max-height:150px;max-width:150px;" class="img-responsive" id="myImg" />
+                        </td>
+                        <td>@p.Prdcts.vendor</td>
+                        <td>@p.Prdcts.productName</td>
+                        <td>R @String.Format("{0:0.00}", p.Prdcts.price)</td>
+                        <td><input type="text" name="txtQuantity" id="txtQuantity" style="max-width:70px" value="@p.Quantity" />
+                            <input type="hidden" name="pid" id="pid" value="@p.Prdcts.productID" />
+                            
+                                </td>
+                        <td>R @String.Format("{0:0.00}", (p.Prdcts.price * p.Quantity))</td>
+                        <td>
+                            @Html.ActionLink("Delete", "DeleteCart", "Products", new { id = p.Prdcts.productID },
+                        new { @class = "btn btn-danger glyphicon glyphicon-trash" })
+                            @*/*  new { onclick = "return confirm('Are you sure you wish to delete?');" })*/*@
+                        </td>
+                        @*<td><button id="minus" class="btn glyphicon glyphicon-minus-sign"></button> <button id="plus" class="btn glyphicon glyphicon-plus-sign"></button></td>*@
+                    </tr>
+
+                            }
+
+            </tbody>
+            <tfoot>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th></th>
+                    <th>Total Price</th>
+                    <th><p>@r @String.Format("{0:0.00}", sum)</p></th>
+                    <th></th>
+                </tr>
+            </tfoot>
+        </table>
+        <br />
+        @Html.ActionLink("Continue Shopping", "Index", new { controller = "Home" }, new { @class = "btn btn-warning" })
+
+        @if (Session["userID"] != null)
+        {
+         @Html.ActionLink("Proceed To CheckOut", "Payment", new { controller = "Order" }, new { @class = "btn btn-success pull-right" })
+        }
+        else
+        {
+            @Html.ActionLink("Proceed To CheckOut", "Login", new { controller = "Account" }, new { @class = "btn btn-success pull-right" })
+        }
+
+        @*@Html.ActionLink("Proceed To CheckOut", "Payment", new { controller = "Checkout" }, new { @class = "btn btn-success pull-right" })*@
+       @*@using (Html.BeginForm("Payment", "Checkout", FormMethod.Post))
+       {
+        
+       }*@
+
+      
+        
+         @*<ul>
+            
+            <li>
+                <a href="/#/login">CheckOut</a>
+            </li>
+        </ul>*@
+        
+
+    </div>
+                            }
+
+@*<FORM METHOD="POST" ACTION="https://www.sidpayment.com/paySID/">
+    <INPUT TYPE="HIDDEN" NAME="SID_MERCHANT" VALUE="PHONEWAREHOUSE" />
+    <INPUT TYPE="HIDDEN" NAME="SID_CURRENCY" VALUE="ZAR" />
+    <INPUT TYPE="HIDDEN" NAME="SID_COUNTRY" VALUE="ZA" />
+    <INPUT TYPE="HIDDEN" NAME="SID_REFERENCE" VALUE="REE384DJ" />
+    <INPUT TYPE="HIDDEN" NAME="SID_AMOUNT" VALUE="129.00" />
+    <INPUT TYPE="HIDDEN" NAME="SID_CONSISTENT" VALUE="DFIHFRUGTOSTERG" />
+    <INPUT TYPE="submit" NAME="PaySID" class="pull-right" value="Checkout" />
+</FORM>*@
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+
+<script>
+        $("#myTable").dataTable({
+            "aoColumnDefs": [
+               { 'bSortable': false, 'aTargets': [2, 3, 4, 5] }
+            ],
+            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+            "iDisplayLength": 5
+        });
+</script>
+

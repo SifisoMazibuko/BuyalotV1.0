@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<sid_order_query_request>
+  <merchant>
+    <code>PHONE</code>
+    <uname>sid@phonewarehouse.co.za</uname>
+    <pword>112233</pword>
+  </merchant>
+  <orders>
+    <transaction>
+      <country>ZA</country>
+      <currency>ZAR</currency>
+      <amount>106.00</amount>
+      <reference>8</reference>
+    </transaction>
+    <transaction>
+      <country>ZA</country>
+      <currency>ZAR</currency>
+      <amount>106.00</amount>
+      <reference>7</reference>
+    </transaction>
+  </orders>
+</sid_order_query_request>

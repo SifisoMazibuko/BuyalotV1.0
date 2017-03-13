@@ -1,0 +1,162 @@
+﻿@using BuyalotV1._0.Models;
+@{
+    ViewBag.Title = "AddToCart";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+<!-- Bootstrap -->
+<link href="./Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="./Content/bootstrap.min.css" rel="stylesheet" />
+<link href="./Content/stylesheet.css" rel="stylesheet" />
+
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+
+<link href="https://cdn.datatables.net/1.10.13/css/jquery.dataTables.min.css" type="text/css" rel="stylesheet" />
+<link href="https://cdn.datatables.net/buttons/1.2.4/css/buttons.dataTables.min.css" type="text/css" rel="stylesheet" />
+<link href="http://http://cdn.datatables.net/tabletools/2.2.4/css/dataTables.tableTools.css" type="text/javascript" rel="stylesheet" />
+
+
+<style type="text/css">
+    .sid {
+        position: relative;
+        width: 100px;
+        height: 50px;
+        background-image: url('/Images/SID.png');
+    }
+</style>
+@using (Html.BeginForm("UpdateQuantity", "Products", FormMethod.Post))
+{
+    <div class="container">
+        @*<h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue" class="glyphicon glyphicon-shopping">Ordered Items</h3>*@
+       <h1>Ordered History</h1>
+        @{
+            decimal totalPrice = 0;
+            decimal subTotalPrice = 0;
+            String r = "R";
+
+        }
+
+            <table class="table table-bordered table-hover table-striped" id="myOrderTable">
+                <thead>
+                    <tr>
+                        <th>Customer NO</th>
+                        <th>Order Date</th>
+                        <th>Title</th>
+                        <th>Status</th>
+                        <th>Shipping Date</th>
+                        @*<th>Shipping Address</th>*@
+                       
+                        
+                        <th>Qty</th>
+                        <th>Price Each</th>
+                        <th>SubTotal</th>
+                    </tr>
+                </thead>
+                @*<tfoot>
+                    <tr>
+                        <th>Customer NO</th>
+                        <th>Order Date</th>
+                        <th>Shipping Date</th>
+                        <th>Shipping Address</th>
+                        <th>Status</th>
+                        <th>Ordered Item</th>
+                        <th>Quantity</th>
+                        <th>Total Price</th>
+                    </tr>
+                </tfoot>*@
+                <tbody>
+                    @foreach (var item in (List<OrderList>)ViewBag.OrderList)
+                    {
+                        totalPrice = totalPrice + item.priceEach;
+                        subTotalPrice = (item.quantityOrdered * item.priceEach);
+                        Session["totalPriceFromOrder"] = totalPrice;
+                        <tr>
+                            
+                            <td>@item.customerID</td>
+                            <td>@item.orderDate</td>
+                            <td>@item.productName</td>
+                            <td>@item.status</td>
+                            <td>@item.shippingDate</td>
+                            @*<td>@item.shippingAddress</td>*@                           
+                            
+                            <td>@item.quantityOrdered</td>
+                            <td>@item.priceEach</td>
+                            <td>@subTotalPrice</td>
+                        </tr>
+                    }
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td>Total Price</td>
+                        <td><p>@r @String.Format("{0:0.00}", totalPrice)</p></td>
+                        
+                    </tr>
+                </tfoot>
+            </table>
+        </div>
+                            }
+
+@*<FORM METHOD="POST" ACTION="https://www.sidpayment.com/paySID/">
+    <INPUT TYPE="HIDDEN" NAME="SID_MERCHANT" VALUE="PHONEWAREHOUSE" />
+    <INPUT TYPE="HIDDEN" NAME="SID_CURRENCY" VALUE="ZAR" />
+    <INPUT TYPE="HIDDEN" NAME="SID_COUNTRY" VALUE="ZA" />
+    <INPUT TYPE="HIDDEN" NAME="SID_REFERENCE" VALUE="REE384DJ" />
+    <INPUT TYPE="HIDDEN" NAME="SID_AMOUNT" VALUE="129.00" />
+    <INPUT TYPE="HIDDEN" NAME="SID_CONSISTENT" VALUE="DFIHFRUGTOSTERG" />
+    <INPUT TYPE="submit" NAME="PaySID" class="pull-right" value="Checkout" />
+</FORM>*@
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/dataTables.buttons.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.flash.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/pdfmake.min.js"></script>
+<script src="https://cdn.rawgit.com/bpampuch/pdfmake/0.1.24/build/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js"></script>
+<script src="http://cdn.datatables.net/buttons/1.2.4/js/buttons.colVis.min.js"></script>
+
+<script>
+    //$("#myOrderTable").dataTable({
+    //        "aoColumnDefs": [
+    //           { 'bSortable': false, 'aTargets': [2, 3, 4, 5] }
+    //        ],
+    //        "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+    //        "iDisplayLength": 5
+    //});
+
+
+    var table = $('#myOrderTable').DataTable({
+        "aoColumnDefs": [
+           { 'bSortable': false, 'aTargets': [0, 2, 3, 4, 6, 7] }
+        ],//,
+        //"aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+        //"iDisplayLength": 5,
+        dom: 'Bfrtip',
+        buttons: [
+            'copy',
+            'print',
+            'pdf'
+        ]
+        //dom: 'Bfrtip',
+        //buttons: [
+        //    'copy', 'pdf', 'print'
+        //]
+    });
+
+    table.buttons().container()
+   .appendTo('#myOrderTable_wrapper .col-md-6:eq(0)');
+</script>
+

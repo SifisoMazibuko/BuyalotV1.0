@@ -1,0 +1,161 @@
+﻿@model IEnumerable<Admin.Models.ProductModel>
+@{
+    ViewBag.Title = "View Products";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Bootstrap -->
+<link href="./Content/bootstrap-theme.css" rel="stylesheet" />
+<link href="./Content/bootstrap.min.css" rel="stylesheet" />
+<link href="./Content/stylesheet.css" rel="stylesheet" />
+
+<link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+<style type="text/css">
+    #myInput {
+        background-image: url('/Images/search.png');
+        background-position: 10px 12px;
+        background-repeat: no-repeat;
+        width: 100%;
+        font-size: 16px;
+        padding: 12px 20px 12px 40px;
+        border: 1px solid #ddd;
+        margin-bottom: 12px;
+    }
+
+    #myTable {
+        /*border-collapse: collapse;*/
+        width: 100%;
+        border: 1px solid #ddd;
+        font-size: 14px;
+    }
+</style>
+<br/>
+<br/>
+<fieldset>
+    <legend class="container">Products Information</legend>
+    <br />
+    <button class="btn btn-default">
+        @Html.ActionLink("Add New Product", "Create")
+    </button>
+    <br />
+    <br />
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for products..">
+    <br />
+    <table class="table table-striped table-responsive table-bordered table-condensed" id="myTable">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.productName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.productDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.price)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.vendor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.quantityInStock)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.productImage)
+            </th>
+            @*<th>
+                    @Html.DisplayNameFor(model => model.ProductCategory.categoryName)
+                </th>*@
+            <th width="200px">Action</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+
+            var base64 = Convert.ToBase64String(item.productImage);
+            var prodImage = string.Format("data:image/png;base64,{0}", base64);
+
+            var name1 = item.vendor + " " + item.productName;
+            var price1 = item.price.ToString();
+            var quantity1 = item.quantityInStock;
+
+
+            var R = "R";
+            var price = R + "" + price1.ToString();
+
+
+
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.productName)
+                </td>
+                <td class="text">
+                    <span>
+                        @Html.DisplayFor(modelItem => item.productDescription)
+                    </span>
+                </td>
+                <td>
+                    @price
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.vendor)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quantityInStock)
+                </td>
+                <td>
+                    <img src="@prodImage" style="max-height:100px;max-width:100px;" />
+
+                </td>
+                @*<td>
+                        @Html.DisplayFor(modelItem => item.ProductCategory.categoryName)
+                    </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.productID }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.productID }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.productID })
+                </td>
+            </tr>
+        }
+
+    </table>
+ </fieldset>
+
+<script src="~/Scripts/jquery.js"></script>
+<script src="~/Scripts/bootstrap.min.js"></script>
+<script src="~/Scripts/jquery.dataTables.min.js"></script>
+<script src="~/Scripts/dataTables.bootstrap.min.js"></script>
+
+
+<script>
+        $("#myTable").dataTable({
+            "aoColumnDefs": [
+               { 'bSortable': false, 'aTargets': [2, 3, 4, 5] }
+            ],
+            "aLengthMenu": [[5, 10, 25, -1], [5, 10, 25, "All"]],
+            "iDisplayLength": 5
+        });
+</script>
+
+<script type="text/javascript">
+    function myFunction() {
+        // Declare variables
+        var input, filter, table, tr, td, i;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        // Loop through all table rows, and hide those who don't match the search query
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td")[0];
+            if (td) {
+                if (td.innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    tr[i].style.display = "";
+                } else {
+                    tr[i].style.display = "none";
+                }
+            }
+        }
+    }
+
+</script>
+

@@ -1,0 +1,189 @@
+﻿@using BuyalotV1._0.Repository;
+@{
+    ICategoryRepository iCategoryRepository = new CategoryRepository();
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    @Scripts.Render("~/bundles/bootstrap")
+    <link rel="shortcut icon" href="~/Images/buyalot.PNG" class="navbar-brand" />
+    <link rel="stylesheet" href="http://www.w3schools.com/lib/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <style>
+        .backcolor {
+            background: #b4fff8;
+        }
+
+        a.sliderImage {
+            margin: 0 25px 0 25px;
+            text-align: center;
+            display: block;
+        }
+
+        a.pname {
+            margin: 25px;
+            text-align: center;
+            display: block;
+        }
+
+        #slider {
+            height: 195px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @*<a href="/#/"><img src="buyalot.PNG" class="navbar-brand" /></a>*@
+            </div>
+            <div class="navbar-collapse collapse">
+                @*<ul class="nav navbar-nav navbar-left">
+                        <li>@Html.ActionLink(" Subscribe", "Subscribe", new { controller = "Subscribe" }, new { @style = "color:#0094ff" })</li>
+                    </ul>*@
+
+
+                <ul class="nav navbar-nav navbar-right">
+                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
+
+                    @*<li>@Html.ActionLink(" " + ViewData["CartCount"] + "", "Cart", new { controller = "Products" }, new { @class = "glyphicon glyphicon-shopping-cart"})</li>
+                        <li>@Html.ActionLink(" " + ViewData["CartWishCount"] + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>*@
+
+
+                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "glyphicon glyphicon-shopping-cart" })</li>
+                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+
+            </div>
+
+        </div>
+    </div>
+
+    @*<br />*@
+    <div id="headSection">
+        <div class="nav navbar-left">
+            <ul>
+                <li class="dropdown" dropdown="">
+
+                    <h2 style="background-color:#373737">@Html.ActionLink("All Product Categories", "Index", new { controller = "Home" }, new { @class = "dropdown-toggle", style = "color:#ffffff;font-size:20px;" })</h2>
+                    <ul class="dropdown" role="menu">
+
+                        @foreach (var category in iCategoryRepository.findAll())
+                        {
+                            <li>
+                                <a href="@Url.Action("Category", "Home", new { id = category.categoryName })">@category.categoryName</a>
+                            </li>
+                        }
+
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <br />
+    </div>
+
+
+    @*<br />
+        <div class="container buy-slideshow">
+            <div class="mover-1"></div>
+        </div>*@
+
+    @*@Html.Partial("SlideView")*@
+    <div class="container body-content">
+        @RenderBody()
+        <hr />
+    </div>
+    <br />
+
+    <footer class="bottom footer-Wrap">
+
+        <div class="container">
+            <section class="pull-right">
+                <h3><b>Follow Us</b></h3>
+                <a href="https://www.facebook.com/profile.php?id=100007682088283"><i class="fa fa-facebook-official w3-hover-text-indigo w3-large"></i></a>
+                <a href="https://www.instagram.com/thereal_sifsilva/"><i class="fa fa-instagram w3-hover-text-purple w3-large"></i></a>
+                <a href="https://twitter.com/Sifsilva"><i class="fa fa-twitter w3-hover-text-light-blue w3-large"></i></a>
+                <a href="https://za.linkedin.com/in/sifiso-mazibuko-24929263"><i class="fa fa-linkedin w3-hover-text-indigo w3-large"></i></a><br />
+                <p>
+                    <a><span class="glyphicon glyphicon-star"></span><strong>@Html.ActionLink(" Subscribe", "Subscribe", new { controller = "Subscribe" })</strong></a>
+                </p>
+
+            </section>
+            <section class="col-xs-12 col-sm-2">
+                <h3><b>Categories</b></h3>
+                <div>
+                    <ul>
+                        @foreach (var category in iCategoryRepository.findAll())
+                        {
+                            <li>
+                                <a href="@Url.Action("Category", "Home", new { id = category.prodCategoryID })">@category.categoryName</a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </section>
+            <section class="col-xs-12 col-sm-4">
+                <h3><b>Account</b></h3>
+
+                @if (Session["cusName"] != null)
+                {
+                    <ul>
+                        <li>@Html.ActionLink("My Personal details", "EditProfile", "Profile", new { id = Convert.ToInt32(Session["userID"]) }, new { @class = "editProfile" })</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("My Orders", "Index", new { controller = "Order" }, new { @class = "trackOrder" })</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("My Invoice", "Invoice", new { controller = "Invoice" }, new { @class = "invoice" })</li>
+                    </ul>
+                }
+                else
+                {
+                    <ul>
+                        <li>@Html.ActionLink("My Personal details", "Login", "Account")</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("My Orders", "Login", new { controller = "Account" }, new { @class = "trackOrder" })</li>
+                    </ul>
+                    <ul>
+                        <li>@Html.ActionLink("My Invoice", "Login", new { controller = "Account" }, new { @class = "invoice" })</li>
+                    </ul>
+                }
+
+            </section>
+            <section class="col-xs-12 col-sm-4">
+                <h3><b>Information</b></h3>
+                <div>
+                    <ul>
+                        <li><span class="glyphicon glyphicon-phone"></span> Call Us: +27123456789</li>
+                        <li><span class="glyphicon glyphicon-envelope"></span> Email Us: Buyalot@buyalot.co.za</li>
+                    </ul>
+                </div>
+            </section>
+        </div>
+
+
+    </footer>
+    <br />
+    <footer id="footer-Wrap">
+        <p>&copy; @DateTime.Now.Year - Buyalot</p>
+    </footer>
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+</body>
+</html>

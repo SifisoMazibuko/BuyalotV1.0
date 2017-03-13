@@ -1,0 +1,23 @@
+﻿
+@{
+    ViewBag.Title = "Success";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+
+@using (Html.BeginForm())
+{
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                <fieldset>
+                    <h2>Email Successfully Sent!!</h2>                    
+                    <br />
+                    <p>
+                        @Html.ActionLink("Back to Login", "Login")
+                    </p>
+                </fieldset>
+            </div>
+        </div>
+    </div>
+}
+

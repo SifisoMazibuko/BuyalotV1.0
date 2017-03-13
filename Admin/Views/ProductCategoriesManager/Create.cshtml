@@ -1,0 +1,39 @@
+﻿@model Admin.Models.ProductCategoryModel
+
+@{
+    ViewBag.Title = "Create Category";
+}
+
+
+<fieldset>
+    <legend class="container">Create Category</legend>
+
+    @using (Html.BeginForm("Create", "ProductCategoriesManager", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <h2>Product Category Details</h2>
+                <p style="color:green">@ViewBag.result<p />
+                <hr />
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                <div class="form-group">
+                    @Html.LabelFor(model => model.categoryName, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.categoryName, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.categoryName, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-md-offset-2 col-md-10">
+                        <input type="submit" value="Add Category" class="btn btn-primary" />
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div>
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+</fieldset>

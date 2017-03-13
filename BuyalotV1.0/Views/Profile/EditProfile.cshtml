@@ -1,0 +1,106 @@
+﻿@model BuyalotV1._0.Models.CustomerInfoModel
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
+}
+<h1>Update personal details</h1>
+<br/>
+@using (Html.BeginForm("EditProfile","Profile"))
+{
+    @Html.AntiForgeryToken()
+    <fieldset class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.customerID)
+        
+        <legend class="container">Email Address</legend>
+        <div class="form-group">
+            <label for="Email" class="col-sm-3 control-label">Email:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.email, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.email, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <legend class="container">Password</legend>
+        <div class="form-group">
+            <label for="Password" class="col-sm-3 control-label">Password:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.password, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="ConfirmPassword" class="col-sm-3 control-label">Confirm Password:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.confirmPassword, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.confirmPassword, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <legend class="container">Personal Information</legend>
+        <div class="form-group">
+            <label for="FirstName" class="col-sm-3 control-label">FirstName:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.firstName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.firstName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="LastName" class="col-sm-3 control-label">LastName:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.lastName, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.lastName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="Phone" class="col-sm-3 control-label">Phone:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.phone, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.phone, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        @*<div class="form-group">
+            <label for="State" class="col-sm-3 control-label">State:</label>
+            <div class="col-sm-9">
+                @Html.EditorFor(model => model.state, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                @Html.ValidationMessageFor(model => model.state, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+          <div class="form-group">
+             <label for="Address" class="col-sm-3 control-label">Address:</label>
+              <div class="col-sm-9">
+                  @Html.EditorFor(model => model.address, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                  @Html.ValidationMessageFor(model => model.address, "", new { @class = "text-danger" })
+              </div>
+          </div>
+
+          <div class="form-group">
+             <label for="City" class="col-sm-3 control-label">City:</label>
+              <div class="col-sm-9">
+                  @Html.EditorFor(model => model.city, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+                  @Html.ValidationMessageFor(model => model.city, "", new { @class = "text-danger" })
+              </div>
+          </div>
+
+        <div class="form-group">
+          <label for="PostalCode" class="col-sm-3 control-label">Postal Code:</label>
+          <div class="col-sm-9">
+              @Html.EditorFor(model => model.postalCode, new { htmlAttributes = new { @class = "form-control", disabled = "disabled" } })
+              @Html.ValidationMessageFor(model => model.postalCode, "", new { @class = "text-danger" })
+          </div>
+        </div>
+
+        <br/>
+        <div class="col-sm-offset-3 col-sm-9">
+            @Html.ActionLink("Edit", "_EditProfile", "Profile", new { id = Convert.ToInt32(Session["userID"]) }, new { @class = "btn btn-primary" })
+
+            @*<input type="submit" value="Update" class="btn btn-success" />*@
+        </div>
+
+     </fieldset>
+}

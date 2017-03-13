@@ -1,0 +1,86 @@
+﻿@model Admin.Models.ProductModel
+
+@{
+    ViewBag.Title = "Delete Product";
+}
+
+<h3>Are you sure you want to delete @Model.vendor  @Model.productName ?</h3>
+<div>
+    <h4>Product Details</h4>
+    <p style="color:green">@ViewBag.result<p />
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.productName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productDescription)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.productDescription)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.vendor)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.vendor)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.quantityInStock)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.quantityInStock)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.productImage)
+        </dt>
+
+        <dd>
+            @{
+                var item = Model;
+                var base64 = Convert.ToBase64String(item.productImage);
+                var prodImage = string.Format("data:image/png;base64,{0}", base64);
+                @*@Html.DisplayFor(model => model.productImage)*@
+                <img src="@prodImage" style="max-height:100px;max-width:100px;" />
+            }
+        </dd>
+
+        @*<dt>
+            @Html.DisplayNameFor(model => model.ProductCategory.categoryName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProductCategory.categoryName)
+        </dd>*@
+
+    </dl>
+
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-danger" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

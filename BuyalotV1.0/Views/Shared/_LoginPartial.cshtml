@@ -1,0 +1,77 @@
+﻿@*@using Microsoft.AspNet.Identity
+@if (Request.IsAuthenticated)
+{
+    using (Html.BeginForm("Logout", "Account", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+    {
+    @Html.AntiForgeryToken()
+
+    <ul class="nav navbar-nav navbar-right">
+        <li>
+            @Html.ActionLink("Welcome " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: null, htmlAttributes: new { title = "Manage" })
+        </li>
+        <li><a href="javascript:document.getElementById('logoutForm').submit()">Log off</a></li>
+    </ul>
+    }
+}
+else
+{
+    <ul class="nav navbar-nav navbar-right">
+        <li>@Html.ActionLink("Login", "Login", "Account", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+        <li>@Html.ActionLink("Register", "Register", "Account", routeValues: null, htmlAttributes: new { id = "registerLink" })</li>
+        
+    </ul>
+}*@
+
+
+
+
+
+<ul class="nav navbar-nav navbar-right">
+    @if (Session["cusName"] != null)
+    {
+
+        <li class="pull-left">
+           @* <a href="#" class="dropdown-toggle" dropdown-toggle="" data-toggle="dropdown">
+                <span>Notification Setting</span><b class="caret"></b>
+            </a>
+           <ul class="dropdown-menu" role="menu">
+                <li>Notification Types</li>
+                <li>@Html.RadioButton("DailyDeals", "Daily Deals", new { @class = "css-checkbox" }) Daily Deals</li>
+                <li>@Html.RadioButton("Promotions", "Promotions", new { @class = "css-checkbox" }) Promotions</li>
+            </ul>*@
+        </li>
+
+        <li><a>Welcome @Session["cusName"] </a></li>
+        <li>@Html.ActionLink("Logout", "Logout", new { controller = "Account" }, new { @class = "logOut" })</li>
+    }
+    else
+    {
+        <li>@Html.ActionLink("Login", "Login", new { controller = "Account" }, new { @class = "login" })</li>
+         <li>@Html.ActionLink("Register", "Register", new { controller = "Account" }, new { @class = "register" })</li>
+           @*<li><a href="/#/register">Register</a></li>*@
+    }
+
+    @*<li>@Html.ActionLink(" " + ViewData["CartCount"] + "", "AddToCart", "Products", new { @class = "glyphicon glyphicon-shopping-cart"})</li>
+        <li>@Html.ActionLink(" " + ViewData["CartWishCount"] + "", "AddToWishlist", "ProductsWishlist", new { @class = "glyphicon glyphicon-heart" })</li>*@
+
+    @if (Session["cusName"] != null)
+    {
+        <li class="dropdown" dropdown="">
+            <a href="#" class="dropdown-toggle" dropdown-toggle="" data-toggle="dropdown">
+                <span>My Account</span><b class="caret"></b>
+            </a>
+            <ul class="dropdown-menu" role="menu">
+                @*<li><a href="/#/trackOrder">Track Order</a></li>*@
+                <li>@Html.ActionLink("Track Order", "Index", new { controller = "Order" }, new { @class = "trackOrder" })</li>
+                <li>@Html.ActionLink("Personal details", "EditProfile", "Profile", new { id = Convert.ToInt32(Session["userID"]) }, new { @class = "editProfile" })</li>
+                <li>@Html.ActionLink("Invoices", "Invoice", new { controller = "Invoice" }, new { @class = "invoice" })</li>
+
+                @*<li><a href="/#/profile">Profile</a></li>*@
+
+            </ul>
+        </li>
+         @*<li><a href="/#/logout" ng-click="logout()">Logout</a></li>*@
+        
+    }
+</ul>
+
