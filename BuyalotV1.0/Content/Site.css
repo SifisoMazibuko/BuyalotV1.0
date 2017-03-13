@@ -65,19 +65,6 @@ textarea {
     background-color: #81a2ff;
   
 }
-
-#myimages { white-space: nowrap; }
-#myimages img {
-display: block;
-float: left;
-margin-left: 20px;
-margin-right: 20px;
-margin-bottom: 0px;
-margin-top: 20px;
-}
-
-
-
 .navbar-brand {
     position: relative;
     border:none;
@@ -86,7 +73,11 @@ margin-top: 20px;
     background-image: url('../Images/buyalot.PNG');
 }
 
-
+#myimages { white-space: nowrap; }
+#myimages > div > img {
+display: block;
+margin-right: 15px;
+}
 
 /*Slide*/
 .buy-slideshow {
@@ -101,8 +92,7 @@ margin-top: 20px;
 
 .buy-slideshow > div {
         /*height: 600px;
-        width: 2400px;
-       
+        width: 2400px;       
         background-image: url('../Images/slide.jpg');*/
         position: absolute;
         /*height: 300%;*/
@@ -152,13 +142,14 @@ ul li:hover ul.dropdown {
 ul li ul.dropdown li {
       display: block;
 }          
-            /*ul li ul.dropdown {
-                    min-width: 100%;
-                    background: #f2f2f2;
-                    display: none;
-                    position: absolute;
-                    z-index: 999;
-                    left: 0;
-                }*/                            
+ /*ul li ul.dropdown {
+     min-width: 100%;
+     background: #f2f2f2;
+     display: none;
+     position: absolute;
+     z-index: 999;
+                   
+
+ }*/                                    
                            
                

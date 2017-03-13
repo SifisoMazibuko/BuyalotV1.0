@@ -28,7 +28,7 @@
         </Div>
     }
 </div>*@
-@*@Html.Partial("SlideView")*@
+@Html.Partial("SlideView")
 <br />
 <h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue">New Released Products</h3>
 <br />
@@ -75,7 +75,6 @@
                     <p style="color:red"><b>@ViewBag.Availability</b></p>
                     <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</p>
                     <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</p>
-
                 }
                 else
                 {

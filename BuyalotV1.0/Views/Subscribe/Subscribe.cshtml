@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Subscribe";
-    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
 
@@ -11,7 +11,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-body">              
-                    <h1 class="container">Newsletter</h1>
+                    <h1 class="container">SignUp To Newsletters</h1>
                     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
                     <div class="form-group">
                         <label for="firstName" class="col-sm-3 control-label">Name*</label>
