@@ -49,27 +49,33 @@
                 </div>
             </a>
 
-
-            <p>@name1</p>
+            <br/>
+            <a href="@Url.Action("Details", "Products", new { id = product.productID })">@name1</a>
             <p>R @String.Format(String.Format("{0:0.00}", product.price))</p>
-            @if (quantity1 > 0)
-            {
-                check1 = "Available";
-                <p style="color:green"><b>@check1</b></p>
+            <div class="text-center">
+                @if (quantity1 > 0)
+                {
+                    check1 = "In Stock";
+                    <p style="color:green"><b>@check1</b></p>
+                    <div style="display:inline;margin:50px">
+                        <a>@Html.ActionLink(" ", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</a>
+                        <a>@Html.ActionLink(" ", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart" })</a>
 
-            }
-            else
-            {
-                check1 = "Out Of Stock";
-                <p style="color:red"><b>@check1</b></p>
-            }
-            
-            <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</p>
-            <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</p>
-      
+                    </div>
+                    
+                }
+                else
+                {
+                    check1 = "Out Of Stock";
+                    <p style="color:red"><b>@check1</b></p>
+                }
+
+               
+            </div>
+               
 
 
-        </div>
+            </div>
                 }
 </div>
 

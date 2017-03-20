@@ -68,21 +68,24 @@
 
             <p>@name1</p>
             <p>R @String.Format(String.Format("{0:0.00}", product.price))</p>
-            @if (quantity1 > 0)
-            {
-                check1 = "Available";
-                <p style="color:green"><b>@check1</b></p>
+            <div class="text-center">
+                @if (quantity1 > 0)
+                {
+                    check1 = "Available";
+                    <p style="color:green"><b>@check1</b></p>
+                    <a>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart"})</a>
+                    <a>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</a>
 
-            }
-            else
-            {
-                check1 = "Out Of Stock";
-                <p style="color:red"><b>@check1</b></p>
-            }
+                }
+                else
+                {
+                    check1 = "Out Of Stock";
+                    <p style="color:red"><b>@check1</b></p>
+                }
 
-            <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</p>
-            <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</p>
-
+               
+            </div>
+           
 
 
         </div>

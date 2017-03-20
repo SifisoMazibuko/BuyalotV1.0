@@ -28,6 +28,7 @@
         </Div>
     }
 </div>*@
+
 @Html.Partial("SlideView")
 <br />
 <h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue">New Released Products</h3>
@@ -63,35 +64,35 @@
                     <img src="@prodImage" id="myImg" style="max-height:200px;max-width:200px;" class="img-responsive"/>
                 </div>
             </a>
+
             <br />
-
-
             <a href="@Url.Action("Details", "Products", new { id = product.productID })">@name1</a>
                 <p>R @String.Format(String.Format("{0:0.00}", product.price))</p>
-                @if (quantity1 > 0)
+            <div class="text-center">
+               @if (quantity1 > 0)
                 {
                     check1 = "In Stock";
                     <p style="color:green"><b>@check1</b></p>
                     <p style="color:red"><b>@ViewBag.Availability</b></p>
-                    <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</p>
-                    <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty" })</p>
-                }
+
+                    <div style="display:inline;margin:50px">
+                        <a>@Html.ActionLink(" ", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</a>
+                        <a>@Html.ActionLink(" ", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart" })</a>
+
+                    </div>
+                    }
                 else
                 {
                     check1 = "Out Of Stock";
                     <p style="color:red"><b>@check1</b></p>
-                    <p>@Html.ActionLink("AddToCart", "AddToCart", "Products", new { id = prodID }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart", disabled = "disabled" })</p>
-                    <p>@Html.ActionLink("AddToWishList", "AddToWishlist", "ProductsWishlist", new { id = prodID }, new { @class = "btn btn-danger glyphicon glyphicon-heart-empty", disabled = "disabled" })</p>
-
+                   
                 }
-
-
-
+            </div>
+               
+            
                 <br />
-</div>
-
-                }
-    
+            </div>
+     }    
 </div>
 
 
