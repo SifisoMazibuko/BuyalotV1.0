@@ -7,74 +7,76 @@
 <h2>Delete</h2>
 
 <h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>CustomerModel</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.firstName)
-        </dt>
+<fieldset>
+    <legend class="container">Delete Customer</legend>
+    <div>
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.firstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.firstName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.firstName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.lastName)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.lastName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.lastName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.lastName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.phone)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.phone)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.phone)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.phone)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.state)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.state)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.state)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.state)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.password)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.password)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.password)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.password)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.confirmPassword)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.confirmPassword)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.confirmPassword)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.confirmPassword)
+            </dd>
 
-    </dl>
+        </dl>
 
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
 
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
-        </div>
-    }
-</div>
+            <div class="form-actions no-color">
+                <input type="submit" value="Delete" class="btn btn-danger" /> |
+                @Html.ActionLink("Back to List", "Index")
+            </div>
+        }
+    </div>
+</fieldset>

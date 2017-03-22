@@ -35,46 +35,22 @@
             </div>
         </div>
     </div>
-    @if (Session["adminName"] != null)
-    {
-        <div class="col-md-2">
-            <div class="panel-group" id="accordion">
-                <div class="panel panel-info">
-
-                    <div class="panel-heading">
-                        <h4 class="panel-title">
-                            <a href="/#/" data-toggle="collapse" data-parent="accordion">ADMIN DASHBOARD</a>
-                        </h4>
-                    </div>
-                    <div id="admin" class="panel-collapse collapse in">
-                        <div class="panel-body">
-                            <ul class="nav">
-                                <li><a>@Html.ActionLink("Customers (" + Convert.ToInt32(Session["CusCount"]) + ")", "Index", "Customer")</a></li>
-                                <li><a>@Html.ActionLink("Customer Orders (" + Convert.ToInt32(Session["OrderCount"]) + ")", "Index", "Order")</a></li>
-                                <li><a>@Html.ActionLink("Products (" + Convert.ToInt32(Session["ProdCount"]) + ")", "Index", "ProductsManager")</a></li>
-                                <li><a>@Html.ActionLink("Product Categories (" + Convert.ToInt32(Session["CatCount"]) + ")", "Index", "ProductCategoriesManager")</a></li>
-                                <li><a>@Html.ActionLink("Subscribers (" + Convert.ToInt32(Session["SubCount"]) + ")", "Index", "SubscribeModels")</a></li>
-
-                                @*<li><a href="#">Cart(<label id="cart">@Session["totalCartCounter"]</label>)</a></li>*@
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    }
-
+    <br/>
+    <div class="nav navbar-left">
+        @Html.Partial("_PanelPartial")
+    </div>
+    <br/>
     <div class="container body-content">
         @RenderBody()
         <hr />        
     </div>
 
-    <footer class="bottom nav navbar-fixed-bottom">
+    <footer class="container bottom">
         <p>&copy; @DateTime.Now.Year - Buyalot Administrator</p>
     </footer>
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

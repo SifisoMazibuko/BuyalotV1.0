@@ -349,8 +349,8 @@ C:\Users\User\Desktop\BuyalotV1.0\Admin\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\User\Desktop\BuyalotV1.0\Admin\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
 C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.Migrations.InitialCreate.resources
+C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.Migrations.InitialCreate1.resources
+C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.WebEmailService.resources
 C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.dll
 C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.pdb
-C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.Migrations.InitialCreate1.resources
-C:\Users\User\Desktop\BuyalotV1.0\Admin\obj\Debug\Admin.WebEmailService.resources

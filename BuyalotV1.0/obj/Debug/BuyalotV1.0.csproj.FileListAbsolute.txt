@@ -335,8 +335,8 @@ C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\bin\Microsoft.Owin.Security.OAuth.
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\bin\Microsoft.Owin.Security.Google.xml
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\bin\Microsoft.Owin.Security.Twitter.xml
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\bin\Microsoft.Owin.Security.MicrosoftAccount.xml
+C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\obj\Debug\BuyalotV1.0.csprojResolveAssemblyReference.cache
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\obj\Debug\BuyalotV1._0.Migrations.InitialCreate.resources
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\obj\Debug\BuyalotV1.0.csproj.GenerateResource.Cache
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\obj\Debug\BuyalotV1.0.dll
 C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\obj\Debug\BuyalotV1.0.pdb
-C:\Users\User\Desktop\BuyalotV1.0\BuyalotV1.0\obj\Debug\BuyalotV1.0.csprojResolveAssemblyReference.cache
