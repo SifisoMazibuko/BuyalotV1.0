@@ -17,6 +17,71 @@
 }   
 </style>
 
+<div id="myCarousel" class="carousel slide" data-ride="carousel" data-interval="6000">
+    <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+    </ol>
+    <div class="carousel-inner">
+        <div class="item active">
+            <a href="@Url.Action("Details", "Products", new { id = 5})">
+                <img src="~/images/samsung.jpg" alt="Samsung" class="img-responsive" />
+            </a>            
+            <br/><br /><br /><br /><br />                     
+            <div class="carousel-caption" role="option">
+                <p>
+                    Samsung S7
+                    <a class="btn btn-success" href="@Url.Action("Details", "Products", new { id = 5})">
+                       More Details
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+             <a href="@Url.Action("Details", "Products", new { id = 11})">
+                 <img src="~/images/lenovo.jpg" alt="Alien Ware" class="img-responsive" />
+            </a>             
+            <br /><br /><br /><br /><br />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Alien Ware
+                    <a class="btn btn-success" href="@Url.Action("Details", "Products", new { id = 11})">
+                       More Details
+                    </a>
+                </p>
+            </div>
+        </div>
+        <div class="item">
+            <a href="@Url.Action("Details", "Products", new { id = 6})">
+                <img src="~/images/xperia.jpg" alt="Xperia Z" class="img-responsive" />
+            </a>             
+            <br /><br /><br /><br /><br />
+            <div class="carousel-caption" role="option">
+                <p>
+                    Xperia Z1
+                     <a class="btn btn-success" href="@Url.Action("Details", "Products", new { id = 6})">
+                        More Details
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Carousel nav -->
+    <a class="carousel-control left" href="#myCarousel"  role="button" data-slide="prev"><span aria-hidden="true">&lsaquo;</span></a>
+    <a class="carousel-control right" href="#myCarousel"  role="button" data-slide="next"><span aria-hidden="true">&rsaquo;</span></a>
+
+    @*<a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+    </a>
+    <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+    </a>*@
+</div>
+<br/>
 @*<div class="container">
 
     @using (Html.BeginForm())
@@ -29,7 +94,7 @@
     }
 </div>*@
 
-@Html.Partial("SlideView")
+@*@Html.Partial("SlideView")*@
 <br />
 <h3 style="border-bottom:solid 2px; border-bottom-color:dodgerblue">New Released Products</h3>
 <br />

@@ -10,7 +10,7 @@
     <WebStackScaffolding_ViewDialogWidth>600</WebStackScaffolding_ViewDialogWidth>
     <WebStackScaffolding_DbContextTypeFullName>BuyalotV1._0.DbConnection.DataContext</WebStackScaffolding_DbContextTypeFullName>
     <UseIISExpress>true</UseIISExpress>
-    <IISExpressSSLPort>44315</IISExpressSSLPort>
+    <IISExpressSSLPort>44332</IISExpressSSLPort>
     <NameOfLastUsedPublishProfile>Profile20170120041123</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <ProjectExtensions>

@@ -151,5 +151,25 @@ ul li ul.dropdown li {
                    
 
  }*/                                    
-                           
-               
+
+
+/* Carousel */
+.carousel-caption p {
+    font-size: 20px;
+    line-height: 1.4;
+}
+
+/* Make .png files in the carousel display properly in older browsers */
+.carousel-inner .item img[src$=".jpg"] {
+    width: 40%;
+    margin-left: 250px;
+    margin-right: 120px;
+}
+
+/* Hide/rearrange for smaller screens */
+@media screen and (max-width: 767px) {
+    /* Hide captions */
+    .carousel-caption {
+        display: none;
+    }
+}               
