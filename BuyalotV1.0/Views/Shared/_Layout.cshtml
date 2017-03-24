@@ -64,27 +64,26 @@
                 @Html.ActionLink(" ", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
                 @*<a href="/#/"><img src="buyalot.PNG" class="navbar-brand" /></a>*@
             </div>
-            <div class="navbar-collapse collapse">
-                @*<ul class="nav navbar-nav navbar-left">
-                    <li>@Html.ActionLink(" Subscribe", "Subscribe", new { controller = "Subscribe" }, new { @style = "color:#0094ff" })</li>
-                </ul>*@
-
-
-                <ul class="nav navbar-nav navbar-right">
-                    @*<li>@Html.ActionLink("Home", "Index", "Home")</li>*@
-
-                    @*<li>@Html.ActionLink(" " + ViewData["CartCount"] + "", "Cart", new { controller = "Products" }, new { @class = "glyphicon glyphicon-shopping-cart"})</li>
-                        <li>@Html.ActionLink(" " + ViewData["CartWishCount"] + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>*@
-
-
-                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "glyphicon glyphicon-shopping-cart" })</li>
-                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>
+            <div class="navbar-collapse collapse">                
+               <ul class="nav navbar-nav navbar-right">
+                  
+                  @*<li>
+                     <a>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "btn btn-success glyphicon glyphicon-shopping-cart" })</a>
+                  </li>
+                   <li class="wishColor">
+                       <a>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</a>
+                   </li>*@
+                   @*<a></a><li class="wishColor">@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>*@                              
+                   @*<li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "cartColor glyphicon glyphicon-shopping-cart" })</li>
+                   <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "AddToWishlist", new { controller = "ProductsWishlist" }, new { @class = "wishColor glyphicon glyphicon-heart" })</li>*@
+                                    
                 </ul>
-                @Html.Partial("_LoginPartial")
-
+                 @Html.Partial("_LoginPartial")             
+                   
             </div>
 
         </div>
+        
     </div>
 
     
@@ -205,8 +204,6 @@
                 </div>
             </section>
         </div>
-
-        
     </footer>
     <br/>
     <footer class="container" id="footer-Wrap">
@@ -216,4 +213,5 @@
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
+
 </html>

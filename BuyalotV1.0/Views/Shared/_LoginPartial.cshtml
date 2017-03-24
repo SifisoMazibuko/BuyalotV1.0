@@ -46,8 +46,12 @@ else
     }
     else
     {
-        <li>@Html.ActionLink("Login", "Login", new { controller = "Account" }, new { @class = "login" })</li>
-         <li>@Html.ActionLink("Register", "Register", new { controller = "Account" }, new { @class = "register" })</li>
+        <li>@Html.ActionLink("Login ", "Login", new { controller = "Account" }, new { @class = "login"})</li>
+        <li>@Html.ActionLink("Register ", "Register", new { controller = "Account" }, new { @class = "register" })</li>
+        <li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "cartColor glyphicon glyphicon-shopping-cart" })</li>
+        <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "AddToWishlist", new { controller = "ProductsWishlist" }, new { @class = "wishColor glyphicon glyphicon-heart" })</li>
+
+
            @*<li><a href="/#/register">Register</a></li>*@
     }
 
@@ -70,8 +74,11 @@ else
 
             </ul>
         </li>
+        <li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "cartColor glyphicon glyphicon-shopping-cart" })</li>
+        <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "AddToWishlist", new { controller = "ProductsWishlist" }, new { @class = "wishColor glyphicon glyphicon-heart" })</li>
+
          @*<li><a href="/#/logout" ng-click="logout()">Logout</a></li>*@
-        
     }
+        
 </ul>
 

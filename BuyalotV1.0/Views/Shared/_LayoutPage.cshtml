@@ -66,8 +66,8 @@
                         <li>@Html.ActionLink(" " + ViewData["CartWishCount"] + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>*@
 
 
-                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "glyphicon glyphicon-shopping-cart" })</li>
-                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>
+                    @*<li>@Html.ActionLink(" " + Convert.ToInt32(Session["cartCounter"]) + "", "Cart", new { controller = "Products" }, new { @class = "glyphicon glyphicon-shopping-cart" })</li>
+                    <li>@Html.ActionLink(" " + Convert.ToInt32(Session["wishCounter"]) + "", "Wish", new { controller = "ProductsWishlist" }, new { @class = "glyphicon glyphicon-heart" })</li>*@
                 </ul>
                 @Html.Partial("_LoginPartial")
 
@@ -98,7 +98,7 @@
             </ul>
         </div>
        </div>
-    @*<br/>*@
+    <br/>
         @*<div class="col-sm-offset-2">
                 @*<ul class="nav navbar-nav row">
                         <li>@Html.ActionLink("New Deals", "")</li>

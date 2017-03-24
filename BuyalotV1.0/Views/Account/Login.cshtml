@@ -6,16 +6,14 @@
     Layout = "~/Views/Shared/_LayoutPage.cshtml";
 }
 
-<h2>Login</h2>
-
-
-@using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
-{
-    @ViewBag.errorLogin
-    @Html.AntiForgeryToken()
-
-    <fieldset class="form-horizontal">
-        <hr />
+<fieldset class="form-horizontal">
+    
+    <legend class="container">Login</legend>
+    @using (Html.BeginForm("Login", "Account", new { returnUrl = Request.QueryString["ReturnUrl"] }, FormMethod.Post))
+    {
+        @ViewBag.errorLogin
+        @Html.AntiForgeryToken()
+        
         @Html.ValidationSummary(true)
 
         <div class="form-group">
@@ -42,8 +40,9 @@
         <div class="col-md-offset-3 col-sm-3">
             @Html.ActionLink("forgot password?", "ForgotPassword")
         </div>
-    </fieldset>
-}
+
+    }
+</fieldset>
 
 <div>
     @Html.ActionLink("Don't have an account? Register", "Register")

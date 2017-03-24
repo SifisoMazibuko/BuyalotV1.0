@@ -68,8 +68,8 @@ textarea {
 .navbar-brand {
     position: relative;
     border:none;
-    height: 60px;
-    width: 160px;
+    height: 45px;
+    width: 132px;
     background-image: url('../Images/buyalot.PNG');
 }
 
@@ -172,4 +172,19 @@ ul li ul.dropdown li {
     .carousel-caption {
         display: none;
     }
-}               
+}        
+
+
+/*Cart & Wishlist background*/
+.cartColor {
+    display:inline;
+    margin-top:0px;
+    background-color:#00ff90;       
+}
+
+.wishColor {
+    display:inline;
+    margin-top:0px;
+    background-color:#ff637b;
+}
+       
